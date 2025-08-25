@@ -7,13 +7,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [
-    { name: "Accueil", href: "#accueil" },
-    { name: "À propos", href: "#a-propos" },
-    { name: "Nos domaines", href: "#domaines" },
-    { name: "Projets", href: "#projets" },
-    { name: "Actualités", href: "#actualites" },
-    { name: "Publications", href: "#publications" },
-    { name: "Contact", href: "#contact" },
+    { name: "Accueil", href: "/" },
+    { name: "À propos", href: "/a-propos" },
+    { name: "Nos domaines", href: "/nos-domaines" },
+    { name: "Projets", href: "/projets" },
+    { name: "Actualités", href: "/actualites" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -69,8 +68,8 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden sm:block">
-              <Button className="button-gradient text-white font-semibold">
-                Nous rejoindre
+            <Button className="button-gradient text-white font-semibold">
+                Faire un don
               </Button>
             </div>
 
@@ -102,7 +101,7 @@ const Header = () => {
                   </a>
                 ))}
                 <Button className="button-gradient text-white font-semibold mt-4 w-fit">
-                  Nous rejoindre
+                  Faire un don
                 </Button>
               </nav>
             </div>
