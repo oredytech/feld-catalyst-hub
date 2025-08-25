@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import logoFeld from "@/assets/logo-feld.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,9 +43,11 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-feld-green to-feld-purple rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                F
-              </div>
+              <img 
+                src={logoFeld} 
+                alt="FELD ASBL Logo" 
+                className="w-12 h-12 object-contain rounded-lg"
+              />
               <div>
                 <h1 className="text-xl font-bold text-primary">FELD ASBL</h1>
                 <p className="text-xs text-muted-foreground">Leadership · Développement</p>

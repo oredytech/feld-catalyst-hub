@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Crown, Handshake, Leaf, GraduationCap, ArrowRight } from "lucide-react";
+import feldCommunityGathering from "@/assets/feld-community-gathering.jpg";
+import feldTrainingSession from "@/assets/feld-training-session.jpg";
 
 const DomainesSection = () => {
   const domaines = [
@@ -112,7 +114,7 @@ const DomainesSection = () => {
         </div>
 
         {/* Impact Stats */}
-        <div className="bg-gradient-to-r from-feld-green to-feld-purple rounded-2xl p-8 md:p-12 text-white text-center">
+        <div className="bg-gradient-to-r from-feld-green to-feld-purple rounded-2xl p-8 md:p-12 text-white text-center mb-16">
           <h3 className="text-3xl font-bold mb-6">Notre Impact en Chiffres</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
@@ -130,6 +132,36 @@ const DomainesSection = () => {
             <div>
               <div className="text-4xl font-bold mb-2">5</div>
               <div className="text-white/90">Provinces d'intervention</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Illustration Images */}
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="relative rounded-2xl overflow-hidden card-shadow">
+            <img 
+              src={feldTrainingSession} 
+              alt="Session de formation FELD - Leadership féminin" 
+              className="w-full h-80 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div className="p-6 text-white">
+                <h4 className="text-xl font-bold mb-2">Formation Leadership</h4>
+                <p className="text-white/90">Développement des compétences de direction</p>
+              </div>
+            </div>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden card-shadow">
+            <img 
+              src={feldCommunityGathering} 
+              alt="Rassemblement communautaire FELD - Cohésion sociale" 
+              className="w-full h-80 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div className="p-6 text-white">
+                <h4 className="text-xl font-bold mb-2">Cohésion Sociale</h4>
+                <p className="text-white/90">Rassemblement et dialogue communautaire</p>
+              </div>
             </div>
           </div>
         </div>

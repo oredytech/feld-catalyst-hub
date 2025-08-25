@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Users, Target, Eye, Heart } from "lucide-react";
+import feldTeamBuilding from "@/assets/feld-team-building.jpg";
 
 const AboutSection = () => {
   const stats = [
@@ -119,10 +120,25 @@ const AboutSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 mb-16">
           <Button size="lg" className="button-gradient text-white font-semibold px-8 py-4">
             Découvrir notre histoire complète
           </Button>
+        </div>
+
+        {/* Team Image */}
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden card-shadow">
+          <img 
+            src={feldTeamBuilding} 
+            alt="Équipe FELD ASBL - Formation et développement" 
+            className="w-full h-96 object-cover"
+          />
+          <div className="bg-white p-6 text-center">
+            <h4 className="text-xl font-bold text-primary mb-2">Notre Équipe en Action</h4>
+            <p className="text-muted-foreground">
+              Formation et renforcement des capacités des femmes leaders congolaises
+            </p>
+          </div>
         </div>
       </div>
     </section>

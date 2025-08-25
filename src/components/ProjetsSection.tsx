@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+import feldWomenProducts from "@/assets/feld-women-products.jpg";
+import feldHumanitarianAid from "@/assets/feld-humanitarian-aid.jpg";
+import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
 
 const ProjetsSection = () => {
   const projets = [
     {
       title: "Autonomisation Agricole des Femmes Rurales",
       description: "Formation de 200 femmes aux techniques d'agriculture durable dans 3 provinces de la RDC. Un projet qui transforme les communautés rurales.",
-      image: project1,
+      image: feldWomenProducts,
       date: "2023-2024",
       location: "Kongo Central, Kwilu, Kasaï",
       participants: "200+ femmes",
@@ -19,7 +19,7 @@ const ProjetsSection = () => {
     {
       title: "Leadership Féminin en Action",
       description: "Programme intensif de formation au leadership pour 150 femmes entrepreneurs et dirigeantes communautaires de Kinshasa.",
-      image: project2,
+      image: feldHumanitarianAid,
       date: "2024",
       location: "Kinshasa",
       participants: "150 femmes",
@@ -29,7 +29,7 @@ const ProjetsSection = () => {
     {
       title: "Médiation pour la Paix Communautaire",
       description: "Initiative de médiation et de résolution pacifique des conflits communautaires impliquant 500 personnes dans 5 communautés.",
-      image: project3,
+      image: feldCocoaFarming,
       date: "2023",
       location: "Haut-Katanga, Lualaba",
       participants: "500+ personnes",
