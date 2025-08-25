@@ -26,11 +26,22 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					light: 'hsl(var(--primary-light))',
+					dark: 'hsl(var(--primary-dark))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				feld: {
+					green: 'hsl(var(--feld-green))',
+					'green-light': 'hsl(var(--feld-green-light))',
+					'green-dark': 'hsl(var(--feld-green-dark))',
+					purple: 'hsl(var(--feld-purple))',
+					'purple-light': 'hsl(var(--feld-purple-light))',
+					'purple-dark': 'hsl(var(--feld-purple-dark))',
+					neutral: 'hsl(var(--feld-neutral))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

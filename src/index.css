@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* FELD ASBL Design System - Green & Purple Theme */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 150 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 150 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 150 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Green primary colors for FELD */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 142 60% 50%;
+    --primary-dark: 142 80% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Purple accent colors for leadership */
+    --secondary: 280 87% 65%;
+    --secondary-foreground: 0 0% 98%;
+    --purple-light: 280 70% 80%;
+    --purple-dark: 280 90% 40%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 142 20% 95%;
+    --muted-foreground: 150 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 142 30% 92%;
+    --accent-foreground: 150 25% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 142 20% 88%;
+    --input: 142 20% 88%;
+    --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* FELD Specific Design Tokens */
+    --feld-green: 142 76% 36%;
+    --feld-green-light: 142 60% 50%;
+    --feld-green-dark: 142 80% 25%;
+    --feld-purple: 280 87% 65%;
+    --feld-purple-light: 280 70% 80%;
+    --feld-purple-dark: 280 90% 40%;
+    --feld-neutral: 150 10% 92%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--feld-green)) 0%, hsl(var(--feld-green-dark)) 50%, hsl(var(--feld-purple-dark)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--feld-green) / 0.05) 0%, hsl(var(--feld-purple) / 0.05) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(var(--feld-green)) 0%, hsl(var(--feld-green-light)) 100%);
+    --gradient-purple: linear-gradient(135deg, hsl(var(--feld-purple)) 0%, hsl(var(--feld-purple-dark)) 100%);
+    
+    /* Shadows */
+    --shadow-feld: 0 10px 30px -5px hsl(var(--feld-green) / 0.2);
+    --shadow-card: 0 4px 20px -2px hsl(var(--feld-green) / 0.1);
+    --shadow-purple: 0 8px 25px -5px hsl(var(--feld-purple) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +122,110 @@ All colors MUST be HSL.
   }
 }
 
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* FELD Component Styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  .button-gradient {
+    background: var(--gradient-button);
+  }
+  
+  .purple-gradient {
+    background: var(--gradient-purple);
+  }
+  
+  .feld-shadow {
+    box-shadow: var(--shadow-feld);
+  }
+  
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .purple-shadow {
+    box-shadow: var(--shadow-purple);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  /* Animations */
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }
