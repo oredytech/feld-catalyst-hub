@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Target, Eye, Heart, Calendar, MapPin, Award, TrendingUp } from "lucide-react";
-import feldTeamBuilding from "@/assets/feld-team-building.jpg";
-import feldTrainingSession from "@/assets/feld-training-session.jpg";
+import feldPresentationReal from "@/assets/feld-presentation-real.jpg";
+import feldTrainingReal from "@/assets/feld-training-real.jpg";
 
 const APropos = () => {
   const timeline = [
@@ -141,7 +141,7 @@ const APropos = () => {
             </div>
             <div className="relative">
               <img 
-                src={feldTrainingSession} 
+                src={feldTrainingReal} 
                 alt="Formation FELD - Mission" 
                 className="w-full h-96 object-cover rounded-2xl card-shadow"
               />
@@ -151,7 +151,7 @@ const APropos = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative md:order-1">
               <img 
-                src={feldTeamBuilding} 
+                src={feldPresentationReal} 
                 alt="Équipe FELD - Vision" 
                 className="w-full h-96 object-cover rounded-2xl card-shadow"
               />

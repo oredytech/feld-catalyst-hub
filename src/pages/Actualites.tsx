@@ -4,12 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, ArrowRight, Eye, MessageCircle, Share2, Clock, Tag } from "lucide-react";
-import feldTeamBuilding from "@/assets/feld-team-building.jpg";
-import feldTrainingSession from "@/assets/feld-training-session.jpg";
-import feldCommunityGathering from "@/assets/feld-community-gathering.jpg";
-import feldHumanitarianAid from "@/assets/feld-humanitarian-aid.jpg";
-import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
-import feldWomenProducts from "@/assets/feld-women-products.jpg";
+import feldPresentationReal from "@/assets/feld-presentation-real.jpg";
+import feldTrainingReal from "@/assets/feld-training-real.jpg";
+import feldCocoaReal from "@/assets/feld-cocoa-real.jpg";
+import feldCraftsReal from "@/assets/feld-crafts-real.jpg";
 
 const Actualites = () => {
   const actualitesRecentes = [
@@ -18,7 +16,7 @@ const Actualites = () => {
       titre: "FELD ASBL lance son programme de leadership 2024",
       resume: "200 femmes sélectionnées pour participer au programme de formation intensive au leadership transformationnel dans 3 provinces de la RDC.",
       contenu: "Ce nouveau programme d'envergure vise à former une nouvelle génération de femmes leaders capables de transformer leurs communautés. Les participantes bénéficieront de 6 mois de formation intensive couvrant le leadership, l'entrepreneuriat, la communication et la gestion de projets.",
-      image: feldTrainingSession,
+      image: feldTrainingReal,
       date: "15 Janvier 2024",
       auteur: "Marie Tshiala",
       categorie: "Formation",
@@ -32,7 +30,7 @@ const Actualites = () => {
       titre: "Succès du projet de réconciliation communautaire au Nord-Kivu",
       resume: "15 communautés du Nord-Kivu ont signé un accord de paix durable grâce aux efforts de médiation de FELD ASBL et de ses partenaires locaux.",
       contenu: "Après 8 mois d'efforts soutenus, notre équipe de médiatrices a réussi à établir un dialogue constructif entre communautés en conflit. Ce succès démontre l'efficacité de notre approche participative et inclusive.",
-      image: feldCommunityGathering,
+      image: feldPresentationReal,
       date: "8 Janvier 2024",
       auteur: "Grace Mukengeshay",
       categorie: "Paix",
@@ -45,7 +43,7 @@ const Actualites = () => {
       titre: "Partenariat stratégique avec l'ONU Femmes",
       resume: "FELD ASBL signe un accord de coopération avec ONU Femmes pour renforcer l'autonomisation économique des femmes rurales en RDC.",
       contenu: "Ce partenariat permettra d'étendre nos programmes d'entrepreneuriat féminin à 5 nouvelles provinces et de toucher 2000 femmes supplémentaires d'ici 2025.",
-      image: feldWomenProducts,
+      image: feldCraftsReal,
       date: "22 Décembre 2023",
       auteur: "Esperance Mbuyi",
       categorie: "Partenariat",
@@ -58,7 +56,7 @@ const Actualites = () => {
       titre: "Formation de 100 médiateurs communautaires",
       resume: "FELD ASBL a formé avec succès 100 médiateurs dans le cadre du programme 'Femmes Bâtisseuses de Paix' dans l'est de la RDC.",
       contenu: "Ces médiateurs, issus de 20 communautés différentes, sont maintenant équipés des outils nécessaires pour prévenir et résoudre les conflits locaux de manière pacifique.",
-      image: feldHumanitarianAid,
+      image: feldPresentationReal,
       date: "15 Décembre 2023",
       auteur: "Jeanne Kalombo",
       categorie: "Formation",
@@ -71,7 +69,7 @@ const Actualites = () => {
       titre: "Lancement du programme agriculture durable",
       resume: "300 femmes agricultrices bénéficient du nouveau programme d'agriculture biologique et de formation aux techniques modernes de culture.",
       contenu: "Ce programme innovant combine formation technique, accompagnement personnalisé et accès au financement pour transformer l'agriculture traditionnelle.",
-      image: feldCocoaFarming,
+      image: feldCocoaReal,
       date: "1 Décembre 2023",
       auteur: "Clémentine Mukala",
       categorie: "Agriculture",
@@ -84,7 +82,7 @@ const Actualites = () => {
       titre: "Célébration de la Journée Internationale de la Femme",
       resume: "FELD ASBL organise une grande conférence réunissant 500 femmes leaders pour célébrer la Journée Internationale de la Femme 2024.",
       contenu: "L'événement a mis en lumière les réussites des femmes congolaises et les défis à relever pour une meilleure représentation féminine dans tous les secteurs.",
-      image: feldTeamBuilding,
+      image: feldTrainingReal,
       date: "8 Mars 2024",
       auteur: "Albertine Tshimanga",
       categorie: "Événement",

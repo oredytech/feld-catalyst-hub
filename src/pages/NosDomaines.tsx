@@ -3,10 +3,10 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Crown, Handshake, Leaf, GraduationCap, ArrowRight, Users, Target, BookOpen, Globe } from "lucide-react";
-import feldTrainingSession from "@/assets/feld-training-session.jpg";
-import feldCommunityGathering from "@/assets/feld-community-gathering.jpg";
-import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
-import feldWomenProducts from "@/assets/feld-women-products.jpg";
+import feldTrainingReal from "@/assets/feld-training-real.jpg";
+import feldPresentationReal from "@/assets/feld-presentation-real.jpg";
+import feldCocoaReal from "@/assets/feld-cocoa-real.jpg";
+import feldCraftsReal from "@/assets/feld-crafts-real.jpg";
 
 const NosDomaines = () => {
   const domaines = [
@@ -15,7 +15,7 @@ const NosDomaines = () => {
       description: "Développement des compétences de leadership, formation à la prise de décision et accompagnement personnalisé des femmes leaders émergentes.",
       icon: Crown,
       color: "feld-green",
-      image: feldTrainingSession,
+      image: feldTrainingReal,
       features: [
         "Formation en leadership transformationnel",
         "Mentorat personnalisé par des expertes", 
@@ -31,7 +31,7 @@ const NosDomaines = () => {
       description: "Promotion de la paix, médiation communautaire, dialogue interculturel et résolution pacifique des conflits au niveau local et régional.",
       icon: Handshake,
       color: "feld-purple",
-      image: feldCommunityGathering,
+      image: feldPresentationReal,
       features: [
         "Médiation de conflits communautaires",
         "Dialogue interculturel et interreligieux",
@@ -47,7 +47,7 @@ const NosDomaines = () => {
       description: "Projets environnementaux, agriculture durable, énergies renouvelables et sensibilisation aux enjeux climatiques et écologiques.",
       icon: Leaf,
       color: "feld-green",
-      image: feldCocoaFarming,
+      image: feldCocoaReal,
       features: [
         "Projets d'agriculture biologique",
         "Formation aux énergies renouvelables",
@@ -63,7 +63,7 @@ const NosDomaines = () => {
       description: "Programmes éducatifs innovants, formation professionnelle, alphabétisation et développement des compétences techniques et numériques.",
       icon: GraduationCap,
       color: "feld-purple", 
-      image: feldWomenProducts,
+      image: feldCraftsReal,
       features: [
         "Formation professionnelle certifiante",
         "Programmes d'alphabétisation pour adultes",

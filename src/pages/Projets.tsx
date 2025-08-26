@@ -4,19 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, ArrowRight, Target, TrendingUp, Award, Clock } from "lucide-react";
-import feldWomenProducts from "@/assets/feld-women-products.jpg";
-import feldHumanitarianAid from "@/assets/feld-humanitarian-aid.jpg";
-import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
-import feldCommunityGathering from "@/assets/feld-community-gathering.jpg";
-import feldTeamBuilding from "@/assets/feld-team-building.jpg";
-import feldTrainingSession from "@/assets/feld-training-session.jpg";
+import feldCraftsReal from "@/assets/feld-crafts-real.jpg";
+import feldPresentationReal from "@/assets/feld-presentation-real.jpg";
+import feldCocoaReal from "@/assets/feld-cocoa-real.jpg";
+import feldTrainingReal from "@/assets/feld-training-real.jpg";
 
 const Projets = () => {
   const projetsEnCours = [
     {
       title: "Programme Leadership Transformation 2024",
       description: "Formation intensive de 200 femmes leaders dans 3 provinces de la RDC avec un focus sur le leadership transformationnel et l'entrepreneuriat social.",
-      image: feldTrainingSession,
+      image: feldTrainingReal,
       date: "Jan 2024 - Déc 2024",
       location: "Kinshasa, Lubumbashi, Goma",
       participants: "200 femmes",
@@ -34,7 +32,7 @@ const Projets = () => {
     {
       title: "Initiative Paix et Réconciliation Communautaire",
       description: "Projet de médiation et de dialogue intercommunautaire impliquant 15 communautés dans les provinces du Nord et Sud-Kivu pour la cohésion sociale.",
-      image: feldCommunityGathering,
+      image: feldPresentationReal,
       date: "Mars 2024 - Mars 2025",
       location: "Nord-Kivu, Sud-Kivu",
       participants: "500+ personnes",
@@ -52,7 +50,7 @@ const Projets = () => {
     {
       title: "Agriculture Durable pour Femmes Rurales",
       description: "Accompagnement de 300 femmes rurales dans l'adoption de techniques d'agriculture durable et la création de coopératives agricoles.",
-      image: feldCocoaFarming,
+      image: feldCocoaReal,
       date: "Juin 2024 - Juin 2025",
       location: "Kongo Central, Kwilu, Kasaï",
       participants: "300 femmes",
@@ -73,7 +71,7 @@ const Projets = () => {
     {
       title: "Autonomisation Économique des Femmes Artisanes",
       description: "Programme d'accompagnement de 150 femmes artisanes dans la valorisation de leurs produits et l'accès aux marchés locaux et internationaux.",
-      image: feldWomenProducts,
+      image: feldCraftsReal,
       date: "2023",
       location: "Kinshasa, Lubumbashi",
       participants: "150 femmes",
@@ -84,7 +82,7 @@ const Projets = () => {
     {
       title: "Formation Digitale pour Femmes Leaders",
       description: "Initiative de formation aux outils numériques et à la communication digitale pour 100 femmes leaders et dirigeantes d'organisations.",
-      image: feldTeamBuilding,
+      image: feldTrainingReal,
       date: "2023",
       location: "Kinshasa",
       participants: "100 femmes",
@@ -95,7 +93,7 @@ const Projets = () => {
     {
       title: "Projet Humanitaire d'Urgence - Aide aux Déplacés",
       description: "Assistance humanitaire et psychosociale aux femmes et enfants déplacés dans l'est de la RDC avec distribution de kits de première nécessité.",
-      image: feldHumanitarianAid,
+      image: feldPresentationReal,
       date: "2022-2023",
       location: "Nord-Kivu, Ituri",
       participants: "1000+ personnes",
