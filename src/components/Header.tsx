@@ -68,8 +68,8 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden sm:block">
-            <Button className="button-gradient text-white font-semibold">
-                Faire un don
+            <Button className="button-gradient text-white font-semibold" asChild>
+                <a href="/faire-un-don">Faire un don</a>
               </Button>
             </div>
 
@@ -100,8 +100,8 @@ const Header = () => {
                     {item.name}
                   </a>
                 ))}
-                <Button className="button-gradient text-white font-semibold mt-4 w-fit">
-                  Faire un don
+                <Button className="button-gradient text-white font-semibold mt-4 w-fit" asChild>
+                  <a href="/faire-un-don">Faire un don</a>
                 </Button>
               </nav>
             </div>
