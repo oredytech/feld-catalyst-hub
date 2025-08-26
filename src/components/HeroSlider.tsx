@@ -1,30 +1,30 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import feldWomenCrafts from "@/assets/feld-women-crafts.jpg";
-import feldTrainingRoom from "@/assets/feld-training-room.jpg";
-import feldCocoaWoman from "@/assets/feld-cocoa-woman.jpg";
+import feldWomenProducts from "@/assets/feld-women-products.jpg";
+import feldHumanitarianAid from "@/assets/feld-humanitarian-aid.jpg";
+import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      image: feldWomenCrafts,
+      image: feldWomenProducts,
       title: "Autonomisation des Femmes Leaders",
       subtitle: "Développer le leadership féminin en République Démocratique du Congo",
       description: "FELD ASBL accompagne les femmes dans leur développement personnel et professionnel pour créer un impact durable dans leur communauté.",
       cta: "Découvrir notre mission"
     },
     {
-      image: feldTrainingRoom,
+      image: feldHumanitarianAid,
       title: "Formation et Renforcement des Capacités",
       subtitle: "Des programmes innovants d'éducation et de formation",
       description: "Nous offrons des formations de qualité pour développer les compétences entrepreneuriales et de leadership des femmes congolaises.",
       cta: "Voir nos programmes"
     },
     {
-      image: feldCocoaWoman,
+      image: feldCocoaFarming,
       title: "Développement Durable et Paix",
       subtitle: "Construire un avenir équitable et prospère",
       description: "Notre approche intégrée favorise la cohésion sociale et contribue au développement durable de la RDC.",
