@@ -1,30 +1,30 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import feldWomenProducts from "@/assets/feld-women-products.jpg";
-import feldHumanitarianAid from "@/assets/feld-humanitarian-aid.jpg";
-import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
+import feldWomenCrafts from "@/assets/feld-women-crafts.jpg";
+import feldTrainingRoom from "@/assets/feld-training-room.jpg";
+import feldCocoaWoman from "@/assets/feld-cocoa-woman.jpg";
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      image: feldWomenProducts,
+      image: feldWomenCrafts,
       title: "Autonomisation des Femmes Leaders",
       subtitle: "Développer le leadership féminin en République Démocratique du Congo",
       description: "FELD ASBL accompagne les femmes dans leur développement personnel et professionnel pour créer un impact durable dans leur communauté.",
       cta: "Découvrir notre mission"
     },
     {
-      image: feldHumanitarianAid,
+      image: feldTrainingRoom,
       title: "Formation et Renforcement des Capacités",
       subtitle: "Des programmes innovants d'éducation et de formation",
       description: "Nous offrons des formations de qualité pour développer les compétences entrepreneuriales et de leadership des femmes congolaises.",
       cta: "Voir nos programmes"
     },
     {
-      image: feldCocoaFarming,
+      image: feldCocoaWoman,
       title: "Développement Durable et Paix",
       subtitle: "Construire un avenir équitable et prospère",
       description: "Notre approche intégrée favorise la cohésion sociale et contribue au développement durable de la RDC.",
@@ -95,7 +95,7 @@ const HeroSlider = () => {
                     <Button 
                       variant="outline" 
                       size="lg"
-                      className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 text-lg transition-bounce"
+                      className="border-white bg-white/10 text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 text-lg transition-bounce backdrop-blur-sm"
                     >
                       En savoir plus
                     </Button>
