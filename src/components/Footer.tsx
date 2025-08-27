@@ -56,9 +56,11 @@ const Footer = () => {
             {/* Organization Info */}
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-feld-green to-feld-purple rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  F
-                </div>
+                <img 
+                  src="/lovable-uploads/5d02a937-eec8-4eaa-a205-264e030e3d66.png" 
+                  alt="FELD ASBL Logo" 
+                  className="w-12 h-12 object-contain"
+                />
                 <div>
                   <h3 className="text-xl font-bold">FELD ASBL</h3>
                   <p className="text-sm text-primary-foreground/80">Leadership · Développement</p>

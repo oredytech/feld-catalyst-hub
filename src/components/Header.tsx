@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
-import logoFeld from "@/assets/logo-feld.png";
+const logoFeld = "/lovable-uploads/5d02a937-eec8-4eaa-a205-264e030e3d66.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
