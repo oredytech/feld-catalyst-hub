@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import feldPresentationReal from "@/assets/feld-presentation-real.jpg";
-import feldTrainingReal from "@/assets/feld-training-real.jpg";
-import feldCocoaReal from "@/assets/feld-cocoa-real.jpg";
-import feldCraftsReal from "@/assets/feld-crafts-real.jpg";
+import feldPresentationReal from "/lovable-uploads/d3af4481-8308-43f4-b563-7b8a8772413a.png";
+import feldTrainingReal from "/lovable-uploads/730cfd8c-7ab9-4d15-bad9-52b505975660.png";
+import feldCocoaReal from "/lovable-uploads/5f16c5d0-5acf-465d-8ce8-9df66ba3443e.png";
+import feldCraftsReal from "/lovable-uploads/5faba18c-ae48-45d7-b1a4-4f625c3e4b17.png";
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2 px-4 text-sm">
+      <div className="hidden sm:block bg-primary text-primary-foreground py-2 px-4 text-sm">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
