@@ -1,96 +1,64 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, User, ArrowRight, Eye, MessageCircle, Share2, Clock, Tag } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Calendar, User, ArrowRight, Eye, MessageCircle, Share2, Clock, Tag, AlertCircle } from "lucide-react";
+import { useWordPressPosts, useWordPressCategories } from "@/hooks/useWordPress";
 import feldPresentationReal from "@/assets/feld-presentation-real.jpg";
 import feldTrainingReal from "@/assets/feld-training-real.jpg";
 import feldCocoaReal from "@/assets/feld-cocoa-real.jpg";
 import feldCraftsReal from "@/assets/feld-crafts-real.jpg";
 
 const Actualites = () => {
-  const actualitesRecentes = [
-    {
-      id: 1,
-      titre: "FELD ASBL lance son programme de leadership 2024",
-      resume: "200 femmes sélectionnées pour participer au programme de formation intensive au leadership transformationnel dans 3 provinces de la RDC.",
-      contenu: "Ce nouveau programme d'envergure vise à former une nouvelle génération de femmes leaders capables de transformer leurs communautés. Les participantes bénéficieront de 6 mois de formation intensive couvrant le leadership, l'entrepreneuriat, la communication et la gestion de projets.",
-      image: feldTrainingReal,
-      date: "15 Janvier 2024",
-      auteur: "Marie Tshiala",
-      categorie: "Formation",
-      tags: ["Leadership", "Formation", "Femmes"],
-      vues: 1250,
-      commentaires: 24,
-      featured: true
-    },
-    {
-      id: 2,
-      titre: "Succès du projet de réconciliation communautaire au Nord-Kivu",
-      resume: "15 communautés du Nord-Kivu ont signé un accord de paix durable grâce aux efforts de médiation de FELD ASBL et de ses partenaires locaux.",
-      contenu: "Après 8 mois d'efforts soutenus, notre équipe de médiatrices a réussi à établir un dialogue constructif entre communautés en conflit. Ce succès démontre l'efficacité de notre approche participative et inclusive.",
-      image: feldPresentationReal,
-      date: "8 Janvier 2024",
-      auteur: "Grace Mukengeshay",
-      categorie: "Paix",
-      tags: ["Paix", "Médiation", "Nord-Kivu"],
-      vues: 890,
-      commentaires: 18
-    },
-    {
-      id: 3,
-      titre: "Partenariat stratégique avec l'ONU Femmes",
-      resume: "FELD ASBL signe un accord de coopération avec ONU Femmes pour renforcer l'autonomisation économique des femmes rurales en RDC.",
-      contenu: "Ce partenariat permettra d'étendre nos programmes d'entrepreneuriat féminin à 5 nouvelles provinces et de toucher 2000 femmes supplémentaires d'ici 2025.",
-      image: feldCraftsReal,
-      date: "22 Décembre 2023",
-      auteur: "Esperance Mbuyi",
-      categorie: "Partenariat",
-      tags: ["Partenariat", "ONU", "Entrepreneuriat"],
-      vues: 2100,
-      commentaires: 45
-    },
-    {
-      id: 4,
-      titre: "Formation de 100 médiateurs communautaires",
-      resume: "FELD ASBL a formé avec succès 100 médiateurs dans le cadre du programme 'Femmes Bâtisseuses de Paix' dans l'est de la RDC.",
-      contenu: "Ces médiateurs, issus de 20 communautés différentes, sont maintenant équipés des outils nécessaires pour prévenir et résoudre les conflits locaux de manière pacifique.",
-      image: feldPresentationReal,
-      date: "15 Décembre 2023",
-      auteur: "Jeanne Kalombo",
-      categorie: "Formation",
-      tags: ["Médiation", "Formation", "Paix"],
-      vues: 750,
-      commentaires: 12
-    },
-    {
-      id: 5,
-      titre: "Lancement du programme agriculture durable",
-      resume: "300 femmes agricultrices bénéficient du nouveau programme d'agriculture biologique et de formation aux techniques modernes de culture.",
-      contenu: "Ce programme innovant combine formation technique, accompagnement personnalisé et accès au financement pour transformer l'agriculture traditionnelle.",
-      image: feldCocoaReal,
-      date: "1 Décembre 2023",
-      auteur: "Clémentine Mukala",
-      categorie: "Agriculture",
-      tags: ["Agriculture", "Durabilité", "Formation"],
-      vues: 980,
-      commentaires: 16
-    },
-    {
-      id: 6,
-      titre: "Célébration de la Journée Internationale de la Femme",
-      resume: "FELD ASBL organise une grande conférence réunissant 500 femmes leaders pour célébrer la Journée Internationale de la Femme 2024.",
-      contenu: "L'événement a mis en lumière les réussites des femmes congolaises et les défis à relever pour une meilleure représentation féminine dans tous les secteurs.",
-      image: feldTrainingReal,
-      date: "8 Mars 2024",
-      auteur: "Albertine Tshimanga",
-      categorie: "Événement",
-      tags: ["Événement", "Célébration", "Femmes"],
-      vues: 3200,
-      commentaires: 67
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const { data: posts, isLoading, error } = useWordPressPosts(currentPage, 10);
+  const { data: categories } = useWordPressCategories();
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  const getAuthorName = (post: any) => {
+    return post._embedded?.author?.[0]?.name || 'FELD ASBL';
+  };
+
+  const getFeaturedImage = (post: any) => {
+    const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    
+    if (!featuredImage) {
+      // Images par défaut basées sur les catégories
+      const categoryNames = getCategoryNames(post);
+      if (categoryNames.includes('Formation')) return feldTrainingReal;
+      if (categoryNames.includes('Agriculture')) return feldCocoaReal;
+      if (categoryNames.includes('Paix')) return feldPresentationReal;
+      return feldCraftsReal;
     }
-  ];
+    
+    return featuredImage;
+  };
+
+  const getCategoryNames = (post: any) => {
+    const postCategories = post._embedded?.['wp:term']?.[0] || [];
+    return postCategories.filter((term: any) => term.taxonomy === 'category').map((cat: any) => cat.name);
+  };
+
+  const getExcerpt = (post: any) => {
+    return post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+  };
+
+  const handleArticleClick = (slug: string) => {
+    navigate(`/actualites/${slug}`);
+  };
 
   const communiques = [
     {
@@ -131,13 +99,16 @@ const Actualites = () => {
     }
   ];
 
-  const categoriesPopulaires = [
+  // Fallback si l'API WordPress n'est pas disponible
+  const fallbackCategories = [
     { nom: "Formation", count: 12 },
     { nom: "Partenariat", count: 8 },
     { nom: "Paix", count: 15 },
     { nom: "Agriculture", count: 6 },
     { nom: "Événement", count: 10 }
   ];
+
+  const displayCategories = categories?.map(cat => ({ nom: cat.name, count: 0 })) || fallbackCategories;
 
   return (
     <div className="min-h-screen">
@@ -180,110 +151,158 @@ const Actualites = () => {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Contenu principal */}
           <div className="lg:col-span-3">
-            {/* Article à la une */}
-            {actualitesRecentes.filter(article => article.featured).map((article) => (
-              <Card key={article.id} className="mb-12 overflow-hidden hover:shadow-lg transition-smooth animate-fade-in">
-                <div className="relative h-80">
-                  <img 
-                    src={article.image}
-                    alt={article.titre}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-feld-green text-white">
-                      <Star className="w-3 h-3 mr-1" />
-                      À la une
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                    <div className="text-white">
-                      <Badge variant="secondary" className="mb-3">{article.categorie}</Badge>
-                      <h2 className="text-3xl font-bold mb-2">{article.titre}</h2>
-                      <p className="text-white/90 mb-4">{article.resume}</p>
-                      <div className="flex items-center gap-4 text-sm text-white/80">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {article.date}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <User className="w-4 h-4" />
-                          {article.auteur}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Eye className="w-4 h-4" />
-                          {article.vues}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-muted-foreground leading-relaxed mb-4">{article.contenu}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {article.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="text-feld-green border-feld-green">
-                        <Tag className="w-3 h-3 mr-1" />
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <MessageCircle className="w-4 h-4" />
-                        {article.commentaires} commentaires
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Share2 className="w-4 h-4" />
-                        Partager
-                      </div>
-                    </div>
-                    <Button className="bg-feld-green hover:bg-feld-green/90 text-white">
-                      Lire la suite
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-
-            {/* Autres actualités */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {actualitesRecentes.filter(article => !article.featured).map((article, index) => (
-                <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-smooth animate-scale-in">
-                  <div className="relative h-48">
-                    <img 
-                      src={article.image}
-                      alt={article.titre}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="secondary">{article.categorie}</Badge>
-                    </div>
-                  </div>
+            {isLoading ? (
+              <div className="space-y-8">
+                <Card className="mb-12">
+                  <Skeleton className="h-80 w-full rounded-t-lg" />
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2">{article.titre}</h3>
-                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
-                      {article.resume}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {article.date}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Eye className="w-3 h-3" />
-                        {article.vues}
-                      </div>
-                    </div>
-                    <Button variant="outline" className="w-full border-feld-green text-feld-green hover:bg-feld-green hover:text-white">
-                      Lire l'article
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
+                    <Skeleton className="h-8 w-3/4 mb-4" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-2/3" />
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[1, 2, 3, 4].map((i) => (
+                    <Card key={i}>
+                      <Skeleton className="h-48 w-full rounded-t-lg" />
+                      <CardContent className="p-6">
+                        <Skeleton className="h-6 w-full mb-3" />
+                        <Skeleton className="h-4 w-full mb-2" />
+                        <Skeleton className="h-4 w-3/4" />
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ) : error ? (
+              <div className="text-center py-16">
+                <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-red-600 mb-2">Erreur de chargement</h3>
+                <p className="text-muted-foreground mb-4">
+                  Impossible de charger les articles depuis le site WordPress.
+                </p>
+                <Button 
+                  onClick={() => window.location.reload()} 
+                  className="bg-feld-green hover:bg-feld-green/90 text-white"
+                >
+                  Réessayer
+                </Button>
+              </div>
+            ) : posts && posts.length > 0 ? (
+              <>
+                {/* Article à la une */}
+                {posts.slice(0, 1).map((post) => (
+                  <Card key={post.id} className="mb-12 overflow-hidden hover:shadow-lg transition-smooth animate-fade-in cursor-pointer"
+                    onClick={() => handleArticleClick(post.slug)}>
+                    <div className="relative h-80">
+                      <img 
+                        src={getFeaturedImage(post)}
+                        alt={post.title.rendered}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = feldTrainingReal;
+                        }}
+                      />
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-feld-green text-white">
+                          <Star className="w-3 h-3 mr-1" />
+                          À la une
+                        </Badge>
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                        <div className="text-white">
+                          {getCategoryNames(post).length > 0 && (
+                            <Badge variant="secondary" className="mb-3">
+                              {getCategoryNames(post)[0]}
+                            </Badge>
+                          )}
+                          <h2 className="text-3xl font-bold mb-2" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                          <p className="text-white/90 mb-4">{getExcerpt(post)}</p>
+                          <div className="flex items-center gap-4 text-sm text-white/80">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              {formatDate(post.date)}
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <User className="w-4 h-4" />
+                              {getAuthorName(post)}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <div 
+                        className="text-muted-foreground leading-relaxed mb-4 line-clamp-3"
+                        dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                      />
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-1">
+                            <Share2 className="w-4 h-4" />
+                            Partager
+                          </div>
+                        </div>
+                        <Button className="bg-feld-green hover:bg-feld-green/90 text-white">
+                          Lire la suite
+                          <ArrowRight className="ml-2 w-4 h-4" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+
+                {/* Autres actualités */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {posts.slice(1).map((post) => (
+                    <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-smooth animate-scale-in cursor-pointer"
+                      onClick={() => handleArticleClick(post.slug)}>
+                      <div className="relative h-48">
+                        <img 
+                          src={getFeaturedImage(post)}
+                          alt={post.title.rendered}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = feldTrainingReal;
+                          }}
+                        />
+                        <div className="absolute top-4 left-4">
+                          {getCategoryNames(post).length > 0 && (
+                            <Badge variant="secondary">{getCategoryNames(post)[0]}</Badge>
+                          )}
+                        </div>
+                      </div>
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2" 
+                          dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                        <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                          {getExcerpt(post)}
+                        </p>
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {formatDate(post.date)}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <User className="w-3 h-3" />
+                            {getAuthorName(post)}
+                          </div>
+                        </div>
+                        <Button variant="outline" className="w-full border-feld-green text-feld-green hover:bg-feld-green hover:text-white">
+                          Lire l'article
+                          <ArrowRight className="ml-2 w-4 h-4" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-16">
+                <h3 className="text-xl font-bold text-muted-foreground mb-2">Aucun article trouvé</h3>
+                <p className="text-muted-foreground">Revenez bientôt pour découvrir nos dernières actualités.</p>
+              </div>
+            )}
 
             {/* Pagination */}
             <div className="flex justify-center mt-12">
@@ -321,13 +340,13 @@ const Actualites = () => {
             <Card className="p-6">
               <h3 className="text-xl font-bold text-primary mb-4">Catégories</h3>
               <div className="space-y-3">
-                {categoriesPopulaires.map((categorie, index) => (
+                {displayCategories.map((categorie, index) => (
                   <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
                     <span className="text-muted-foreground hover:text-feld-green cursor-pointer transition-colors">
                       {categorie.nom}
                     </span>
                     <Badge variant="outline" className="text-xs">
-                      {categorie.count}
+                      {categorie.count || '—'}
                     </Badge>
                   </div>
                 ))}
@@ -386,7 +405,7 @@ const Actualites = () => {
   );
 };
 
-// Composant manquant pour l'étoile
+// Composant Star pour l'icône vedette
 const Star = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 20 20">
     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
