@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { WordPressPost, WordPressCategory, WordPressTag } from '@/types/wordpress';
 
-const WP_API_BASE = 'http://feld-rdc.org/wp-json/wp/v2';
+const WP_API_BASE = 'http://feldrdc.org/wp-json/wp/v2';
 
 export const useWordPressPosts = (page = 1, perPage = 10) => {
   return useQuery({
