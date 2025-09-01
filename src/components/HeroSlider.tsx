@@ -1,38 +1,38 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import feldPresentationReal from "/lovable-uploads/d3af4481-8308-43f4-b563-7b8a8772413a.png";
-import feldTrainingReal from "/lovable-uploads/730cfd8c-7ab9-4d15-bad9-52b505975660.png";
-import feldCocoaReal from "/lovable-uploads/5f16c5d0-5acf-465d-8ce8-9df66ba3443e.png";
-import feldCraftsReal from "/lovable-uploads/5faba18c-ae48-45d7-b1a4-4f625c3e4b17.png";
+import feldTeamReal from "/lovable-uploads/f4a18007-b725-45ae-9879-dac803a5013a.png";
+import feldCommunityReal from "/lovable-uploads/2cabfee9-7188-48fd-8a47-c367b2135fb5.png";
+import feldArtisanatReal from "/lovable-uploads/40c9ca53-8802-4c02-92b7-c84aef4113ac.png";
+import feldAideHumanitaireReal from "/lovable-uploads/76b75473-9694-4d6c-968d-d294389690ca.png";
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      image: feldCraftsReal,
+      image: feldArtisanatReal,
       title: "Autonomisation des Femmes Leaders",
       subtitle: "Développer le leadership féminin en République Démocratique du Congo",
       description: "FELD ASBL accompagne les femmes dans leur développement personnel et professionnel pour créer un impact durable dans leur communauté.",
       cta: "Découvrir notre mission"
     },
     {
-      image: feldTrainingReal,
+      image: feldTeamReal,
       title: "Formation et Renforcement des Capacités",
       subtitle: "Des programmes innovants d'éducation et de formation",
       description: "Nous offrons des formations de qualité pour développer les compétences entrepreneuriales et de leadership des femmes congolaises.",
       cta: "Voir nos programmes"
     },
     {
-      image: feldCocoaReal,
+      image: feldCommunityReal,
       title: "Développement Durable et Paix",
       subtitle: "Construire un avenir équitable et prospère",
       description: "Notre approche intégrée favorise la cohésion sociale et contribue au développement durable de la RDC.",
       cta: "Rejoindre le mouvement"
     },
     {
-      image: feldPresentationReal,
+      image: feldAideHumanitaireReal,
       title: "Sensibilisation et Plaidoyer",
       subtitle: "Créer un impact social durable et mesurable",
       description: "Nos campagnes de sensibilisation et activités de plaidoyer visent à transformer les mentalités et promouvoir l'égalité des genres.",
