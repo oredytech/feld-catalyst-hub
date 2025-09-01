@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import feldTeamReal from "/lovable-uploads/f4a18007-b725-45ae-9879-dac803a5013a.png";
@@ -8,6 +9,7 @@ import feldAideHumanitaireReal from "/lovable-uploads/76b75473-9694-4d6c-968d-d2
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const slides = [
     {
@@ -15,28 +17,32 @@ const HeroSlider = () => {
       title: "Autonomisation des Femmes Leaders",
       subtitle: "Développer le leadership féminin en République Démocratique du Congo",
       description: "FELD ASBL accompagne les femmes dans leur développement personnel et professionnel pour créer un impact durable dans leur communauté.",
-      cta: "Découvrir notre mission"
+      cta: "Découvrir notre mission",
+      ctaLink: "/a-propos"
     },
     {
       image: feldTeamReal,
       title: "Formation et Renforcement des Capacités",
       subtitle: "Des programmes innovants d'éducation et de formation",
       description: "Nous offrons des formations de qualité pour développer les compétences entrepreneuriales et de leadership des femmes congolaises.",
-      cta: "Voir nos programmes"
+      cta: "Voir nos programmes",
+      ctaLink: "/nos-domaines"
     },
     {
       image: feldCommunityReal,
       title: "Développement Durable et Paix",
       subtitle: "Construire un avenir équitable et prospère",
       description: "Notre approche intégrée favorise la cohésion sociale et contribue au développement durable de la RDC.",
-      cta: "Rejoindre le mouvement"
+      cta: "Rejoindre le mouvement",
+      ctaLink: "/projets"
     },
     {
       image: feldAideHumanitaireReal,
       title: "Sensibilisation et Plaidoyer",
       subtitle: "Créer un impact social durable et mesurable",
       description: "Nos campagnes de sensibilisation et activités de plaidoyer visent à transformer les mentalités et promouvoir l'égalité des genres.",
-      cta: "Découvrir nos actions"
+      cta: "Découvrir nos actions",
+      ctaLink: "/actualites"
     }
   ];
 
@@ -96,6 +102,7 @@ const HeroSlider = () => {
                     <Button 
                       size="lg" 
                       className="bg-white text-primary hover:bg-gray-100 font-semibold px-8 py-4 text-lg transition-bounce"
+                      onClick={() => navigate(slide.ctaLink)}
                     >
                       {slide.cta}
                       <ArrowRight className="ml-2 w-5 h-5" />
@@ -104,6 +111,7 @@ const HeroSlider = () => {
                       variant="outline" 
                       size="lg"
                       className="border-white bg-white/10 text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 text-lg transition-bounce backdrop-blur-sm"
+                      onClick={() => navigate("/a-propos")}
                     >
                       En savoir plus
                     </Button>
