@@ -75,7 +75,7 @@ const HeroSlider = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 hero-gradient opacity-80"></div>
+            <div className="absolute inset-0 hero-gradient opacity-50"></div>
           </div>
 
           {/* Content */}
