@@ -1,7 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Eye, Share2, Tag, Clock } from "lucide-react";
+import { ArrowLeft, Calendar, User, Tag, Clock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ShareButton from "@/components/ShareButton";
+import CommentForm from "@/components/CommentForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -146,10 +148,11 @@ const ArticleDetail = () => {
 
               {/* Actions de partage */}
               <div className="flex items-center gap-4 pb-6 border-b">
-                <Button variant="outline" size="sm">
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Partager
-                </Button>
+                <ShareButton 
+                  title={article.title.rendered}
+                  slug={slug!}
+                  excerpt={article.excerpt.rendered}
+                />
               </div>
             </div>
 
@@ -199,6 +202,20 @@ const ArticleDetail = () => {
                 </div>
               </div>
             )}
+
+            {/* Partage et commentaires */}
+            <div className="mt-12 pt-8 border-t">
+              <div className="flex justify-center mb-8">
+                <ShareButton 
+                  title={article.title.rendered}
+                  slug={slug!}
+                  excerpt={article.excerpt.rendered}
+                />
+              </div>
+            </div>
+
+            {/* Formulaire de commentaire */}
+            <CommentForm articleId={article.id} />
 
             {/* Navigation vers d'autres articles */}
             <div className="mt-12 pt-8 border-t">
