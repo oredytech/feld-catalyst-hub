@@ -171,17 +171,17 @@ const Footer = () => {
             <p>
               © {new Date().getFullYear()} FELD ASBL. Tous droits réservés.
             </p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-feld-green transition-smooth">
-                Politique de Confidentialité
+            <p>
+              Fièrement conçu par{" "}
+              <a 
+                href="https://oredytech.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-feld-green transition-smooth font-semibold"
+              >
+                Oredy TECHNOLOGIES
               </a>
-              <a href="#" className="hover:text-feld-green transition-smooth">
-                Mentions Légales
-              </a>
-              <a href="#" className="hover:text-feld-green transition-smooth">
-                Plan du Site
-              </a>
-            </div>
+            </p>
           </div>
         </div>
       </div>
