@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Crown, Handshake, Leaf, GraduationCap, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import feldCommunityGathering from "@/assets/feld-community-gathering.jpg";
 import feldTrainingSession from "@/assets/feld-training-session.jpg";
 
 const DomainesSection = () => {
+  const navigate = useNavigate();
   const domaines = [
     {
       title: "Leadership Féminin",
@@ -105,6 +107,7 @@ const DomainesSection = () => {
               <Button 
                 variant="outline"
                 className={`w-full border-${domaine.color} text-${domaine.color} hover:bg-${domaine.color} hover:text-white transition-smooth group-hover:shadow-md`}
+                onClick={() => navigate("/nos-domaines")}
               >
                 En savoir plus
                 <ArrowRight className="ml-2 w-4 h-4" />

@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Users, Target, Eye, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import feldTeamBuilding from "@/assets/feld-team-building.jpg";
 
 const AboutSection = () => {
+  const navigate = useNavigate();
   const stats = [
     { number: "2017", label: "Année de fondation", icon: Target },
     { number: "1000+", label: "Femmes formées", icon: Users },
@@ -121,7 +123,11 @@ const AboutSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-16 mb-16">
-          <Button size="lg" className="button-gradient text-white font-semibold px-8 py-4">
+          <Button 
+            size="lg" 
+            className="button-gradient text-white font-semibold px-8 py-4"
+            onClick={() => navigate("/a-propos")}
+          >
             Découvrir notre histoire complète
           </Button>
         </div>

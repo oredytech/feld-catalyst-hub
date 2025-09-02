@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import feldWomenProducts from "@/assets/feld-women-products.jpg";
 import feldHumanitarianAid from "@/assets/feld-humanitarian-aid.jpg";
 import feldCocoaFarming from "@/assets/feld-cocoa-farming.jpg";
 
 const ProjetsSection = () => {
+  const navigate = useNavigate();
   const projets = [
     {
       title: "Autonomisation Agricole des Femmes Rurales",
@@ -131,6 +133,7 @@ const ProjetsSection = () => {
                 <Button 
                   variant="outline" 
                   className="w-full border-feld-green text-feld-green hover:bg-feld-green hover:text-white transition-smooth"
+                  onClick={() => navigate("/projets")}
                 >
                   Voir le projet complet
                   <ArrowRight className="ml-2 w-4 h-4" />
@@ -169,7 +172,11 @@ const ProjetsSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button size="lg" className="button-gradient text-white font-semibold px-8 py-4">
+          <Button 
+            size="lg" 
+            className="button-gradient text-white font-semibold px-8 py-4"
+            onClick={() => navigate("/projets")}
+          >
             Voir tous nos projets
           </Button>
         </div>

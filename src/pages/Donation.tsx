@@ -1,276 +1,238 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Heart, CreditCard, Banknote, Users, CheckCircle } from "lucide-react";
+import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Copy, Phone, CreditCard, Smartphone } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 const Donation = () => {
-  const { toast } = useToast();
+  const [amount, setAmount] = useState("");
+  const [donorInfo, setDonorInfo] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast({
-      title: "Copié !",
-      description: "Les informations ont été copiées dans le presse-papiers.",
-    });
+  const predefinedAmounts = [25, 50, 100, 250, 500, 1000];
+
+  const handleDonation = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (amount && donorInfo.name && donorInfo.email) {
+      toast.success(`Merci ${donorInfo.name} pour votre don de $${amount} USD!`);
+      setAmount("");
+      setDonorInfo({ name: "", email: "", message: "" });
+    } else {
+      toast.error("Veuillez remplir tous les champs obligatoires.");
+    }
   };
 
-  const bankingInfo = {
-    accountName: "FEMMES ENGAGEES POUR LE LEADERSHIP ET LE DEVELOPPEMENT",
-    accountNumber: "30014614301",
-    normalizedAccount: "00021003003001461430110",
-    accountType: "CURRENT ACCOUNT CORPORATES UAT4",
-    currency: "Dollar AMÉRICAIN (USD)",
-    bankCode: "00021",
-    swift: "ABNGCDKI"
-  };
-
-  const correspondents = [
+  const impactAreas = [
     {
-      name: "Banque Centrale du Congo (BCC)",
-      account: "Access Bank (RD Congo) SA",
-      swift: "BCCGSKS",
-      currency: "Franc Congolais (CDF)",
-      accountNumber: "00010100000000000001303"
+      title: "Formation Leadership",
+      description: "Former 10 femmes leaders pendant 6 mois",
+      amount: "$500",
+      icon: Users
     },
     {
-      name: "CITI NEW YORK",
-      account: "Access Bank (RD Congo) SA",
-      swift: "CITIUS33",
-      currency: "USD",
-      accountNumber: "36253309",
-      iban: "36253309"
+      title: "Programme Entrepreneurial", 
+      description: "Équiper une coopérative féminine complète",
+      amount: "$250",
+      icon: Heart
     },
     {
-      name: "CITI BANK LONDRES",
-      account: "Access Bank (RD Congo) SA",
-      swift: "CITIGB2L",
-      currency: "EURO",
-      accountNumber: "11296337",
-      iban: "GB33CITI18500811296337"
+      title: "Médiation Communautaire",
+      description: "Résoudre 5 conflits dans une communauté",
+      amount: "$100",
+      icon: CheckCircle
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <main className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
+      <main className="py-20">
+        <div className="container mx-auto px-4">
           {/* Hero Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-primary mb-4">
-              Faire un Don
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-feld-green/10 text-feld-green px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Heart className="w-4 h-4" />
+              Faire un don
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+              Soutenez l'autonomisation des femmes congolaises
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Votre générosité nous permet de continuer notre mission de leadership et de développement 
-              au service des communautés de la République Démocratique du Congo.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Votre générosité permet à FELD ASBL de poursuivre sa mission de développement 
+              du leadership féminin en République Démocratique du Congo.
             </p>
           </div>
 
-          {/* Banking Information */}
-          <div className="grid gap-8 mb-8">
-            <Card>
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Donation Form */}
+            <Card className="p-6">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CreditCard className="w-5 h-5" />
-                  Informations Bancaires Principales
-                </CardTitle>
+                <CardTitle className="text-2xl text-primary">Faire un don</CardTitle>
                 <CardDescription>
-                  Access Bank (RD Congo) SA
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Nom du compte</label>
-                    <div className="flex items-center justify-between bg-muted p-3 rounded-md">
-                      <span className="text-sm font-mono">{bankingInfo.accountName}</span>
-                      <Button 
-                        size="sm" 
-                        variant="ghost"
-                        onClick={() => copyToClipboard(bankingInfo.accountName)}
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Numéro de compte</label>
-                    <div className="flex items-center justify-between bg-muted p-3 rounded-md">
-                      <span className="text-sm font-mono">{bankingInfo.accountNumber}</span>
-                      <Button 
-                        size="sm" 
-                        variant="ghost"
-                        onClick={() => copyToClipboard(bankingInfo.accountNumber)}
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Compte normalisé</label>
-                    <div className="flex items-center justify-between bg-muted p-3 rounded-md">
-                      <span className="text-sm font-mono">{bankingInfo.normalizedAccount}</span>
-                      <Button 
-                        size="sm" 
-                        variant="ghost"
-                        onClick={() => copyToClipboard(bankingInfo.normalizedAccount)}
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Code SWIFT</label>
-                    <div className="flex items-center justify-between bg-muted p-3 rounded-md">
-                      <span className="text-sm font-mono">{bankingInfo.swift}</span>
-                      <Button 
-                        size="sm" 
-                        variant="ghost"
-                        onClick={() => copyToClipboard(bankingInfo.swift)}
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Type de compte</label>
-                    <p className="text-sm bg-muted p-3 rounded-md">{bankingInfo.accountType}</p>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-muted-foreground">Monnaie</label>
-                    <p className="text-sm bg-muted p-3 rounded-md">{bankingInfo.currency}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Correspondent Banks */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Banques Correspondantes</CardTitle>
-                <CardDescription>
-                  Informations pour les virements internationaux
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {correspondents.map((correspondent, index) => (
-                  <div key={index} className="border rounded-lg p-4 space-y-3">
-                    <h3 className="font-semibold text-primary">{correspondent.name}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-xs font-medium text-muted-foreground">Code SWIFT</label>
-                        <div className="flex items-center justify-between bg-muted p-2 rounded">
-                          <span className="text-sm font-mono">{correspondent.swift}</span>
-                          <Button 
-                            size="sm" 
-                            variant="ghost"
-                            onClick={() => copyToClipboard(correspondent.swift)}
-                          >
-                            <Copy className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      </div>
-                      <div className="space-y-1">
-                        <label className="text-xs font-medium text-muted-foreground">Monnaie</label>
-                        <p className="text-sm bg-muted p-2 rounded">{correspondent.currency}</p>
-                      </div>
-                      <div className="space-y-1">
-                        <label className="text-xs font-medium text-muted-foreground">Numéro de compte</label>
-                        <div className="flex items-center justify-between bg-muted p-2 rounded">
-                          <span className="text-sm font-mono">{correspondent.accountNumber}</span>
-                          <Button 
-                            size="sm" 
-                            variant="ghost"
-                            onClick={() => copyToClipboard(correspondent.accountNumber)}
-                          >
-                            <Copy className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      </div>
-                      {correspondent.iban && (
-                        <div className="space-y-1">
-                          <label className="text-xs font-medium text-muted-foreground">IBAN</label>
-                          <div className="flex items-center justify-between bg-muted p-2 rounded">
-                            <span className="text-sm font-mono">{correspondent.iban}</span>
-                            <Button 
-                              size="sm" 
-                              variant="ghost"
-                              onClick={() => copyToClipboard(correspondent.iban)}
-                            >
-                              <Copy className="w-3 h-3" />
-                            </Button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Mobile Money */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Smartphone className="w-5 h-5" />
-                  Mobile Money
-                </CardTitle>
-                <CardDescription>
-                  Options de paiement mobile disponibles
+                  Choisissez le montant de votre contribution pour soutenir nos programmes
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between bg-muted p-4 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <Phone className="w-5 h-5 text-primary" />
-                      <div>
-                        <p className="font-medium">Numéro Mobile Money</p>
-                        <p className="text-sm text-muted-foreground">Airtel Money, M-Pesa, Orange Money</p>
-                      </div>
+                <form onSubmit={handleDonation} className="space-y-6">
+                  {/* Amount Selection */}
+                  <div>
+                    <Label htmlFor="amount" className="text-base font-semibold mb-4 block">
+                      Montant du don (USD)
+                    </Label>
+                    <div className="grid grid-cols-3 gap-3 mb-4">
+                      {predefinedAmounts.map((preset) => (
+                        <Button
+                          key={preset}
+                          type="button"
+                          variant={amount === preset.toString() ? "default" : "outline"}
+                          onClick={() => setAmount(preset.toString())}
+                          className="h-12"
+                        >
+                          ${preset}
+                        </Button>
+                      ))}
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-lg">+243 995 021 267</span>
-                      <Button 
-                        size="sm" 
-                        variant="ghost"
-                        onClick={() => copyToClipboard("+243995021267")}
-                      >
-                        <Copy className="w-4 h-4" />
+                    <Input
+                      id="amount"
+                      type="number"
+                      placeholder="Autre montant"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      className="text-lg h-12"
+                    />
+                  </div>
+
+                  {/* Donor Information */}
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="name">Nom complet *</Label>
+                      <Input
+                        id="name"
+                        value={donorInfo.name}
+                        onChange={(e) => setDonorInfo({...donorInfo, name: e.target.value})}
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="email">Adresse email *</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={donorInfo.email}
+                        onChange={(e) => setDonorInfo({...donorInfo, email: e.target.value})}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="message">Message (optionnel)</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Partagez votre motivation ou message..."
+                        value={donorInfo.message}
+                        onChange={(e) => setDonorInfo({...donorInfo, message: e.target.value})}
+                        rows={4}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Payment Methods */}
+                  <div>
+                    <Label className="text-base font-semibold mb-4 block">
+                      Méthode de paiement
+                    </Label>
+                    <div className="flex gap-3">
+                      <Button type="button" variant="outline" className="flex-1">
+                        <CreditCard className="w-4 h-4 mr-2" />
+                        Carte bancaire
+                      </Button>
+                      <Button type="button" variant="outline" className="flex-1">
+                        <Banknote className="w-4 h-4 mr-2" />
+                        Virement
                       </Button>
                     </div>
                   </div>
-                </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full button-gradient text-white font-semibold h-12"
+                    disabled={!amount || !donorInfo.name || !donorInfo.email}
+                  >
+                    <Heart className="w-4 h-4 mr-2" />
+                    Faire un don de ${amount || '0'} USD
+                  </Button>
+                </form>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Contact Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Besoin d'aide ?</CardTitle>
-              <CardDescription>
-                Contactez-nous pour toute question concernant votre don
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-primary" />
-                  <span className="text-sm">+243 995 021 267</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm">📧</span>
-                  <span className="text-sm">feldrdc1@gmail.com</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            {/* Impact Information */}
+            <div className="space-y-6">
+              <Card className="p-6 bg-gradient-to-br from-feld-green/5 to-feld-purple/5">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-primary">Votre impact</CardTitle>
+                  <CardDescription>
+                    Découvrez comment votre don transforme des vies
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    {impactAreas.map((area, index) => (
+                      <div key={index} className="flex gap-4 p-4 bg-white rounded-lg">
+                        <div className="w-12 h-12 bg-feld-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <area.icon className="w-6 h-6 text-feld-green" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex justify-between items-start mb-2">
+                            <h4 className="font-bold text-primary">{area.title}</h4>
+                            <span className="text-lg font-bold text-feld-green">{area.amount}</span>
+                          </div>
+                          <p className="text-muted-foreground text-sm">{area.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Contact for Large Donations */}
+              <Card className="p-6">
+                <CardHeader>
+                  <CardTitle className="text-xl text-primary">Don important ?</CardTitle>
+                  <CardDescription>
+                    Pour les dons de plus de $1000 USD ou les partenariats,contactez-nous directement
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-feld-green rounded-full"></div>
+                      <span>Email: feldrdc1@gmail.com</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-feld-green rounded-full"></div>
+                      <span>Téléphone: +243 995 021 267</span>
+                    </div>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    className="w-full mt-4 border-feld-green text-feld-green hover:bg-feld-green hover:text-white"
+                  >
+                    Nous contacter
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </main>
 

@@ -1,7 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      toast.success("Merci pour votre inscription à notre newsletter!");
+      setEmail("");
+    } else {
+      toast.error("Veuillez saisir une adresse email valide.");
+    }
+  };
   const quickLinks = [
     { name: "À propos", href: "#a-propos" },
     { name: "Nos domaines", href: "#domaines" },
@@ -32,19 +47,23 @@ const Footer = () => {
             Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités, 
             rapports d'impact et opportunités de formation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Votre adresse email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-3 rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-white/50"
+              required
             />
             <Button 
+              type="submit"
               className="bg-white text-primary hover:bg-gray-100 font-semibold whitespace-nowrap px-6"
             >
               S'abonner
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -97,12 +116,12 @@ const Footer = () => {
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
-                      className="text-primary-foreground/80 hover:text-feld-green transition-smooth"
+                    <button
+                      onClick={() => navigate(link.href)}
+                      className="text-primary-foreground/80 hover:text-feld-green transition-smooth text-left"
                     >
                       {link.name}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -156,6 +175,7 @@ const Footer = () => {
               
               <Button 
                 className="w-full mt-6 bg-feld-green hover:bg-feld-green-dark text-white font-semibold"
+                onClick={() => navigate("/contact")}
               >
                 Nous écrire
               </Button>

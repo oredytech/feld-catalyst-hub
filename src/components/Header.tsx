@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 const logoFeld = "/lovable-uploads/5d02a937-eec8-4eaa-a205-264e030e3d66.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navigation = [
     { name: "Accueil", href: "/" },
@@ -56,20 +58,23 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
               {navigation.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
+                  onClick={() => navigate(item.href)}
                   className="text-foreground hover:text-primary transition-smooth font-medium"
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
             </nav>
 
             {/* CTA Button */}
             <div className="hidden sm:block">
-            <Button className="button-gradient text-white font-semibold" asChild>
-                <a href="/faire-un-don">Faire un don</a>
+              <Button 
+                className="button-gradient text-white font-semibold"
+                onClick={() => navigate("/donation")}
+              >
+                Faire un don
               </Button>
             </div>
 
@@ -91,17 +96,25 @@ const Header = () => {
             <div className="lg:hidden py-4 border-t animate-slide-up">
               <nav className="flex flex-col gap-4">
                 {navigation.map((item) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
-                    className="text-foreground hover:text-primary transition-smooth py-2 font-medium"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      navigate(item.href);
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-foreground hover:text-primary transition-smooth py-2 font-medium text-left"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
-                <Button className="button-gradient text-white font-semibold mt-4 w-fit" asChild>
-                  <a href="/faire-un-don">Faire un don</a>
+                <Button 
+                  className="button-gradient text-white font-semibold mt-4 w-fit"
+                  onClick={() => {
+                    navigate("/donation");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Faire un don
                 </Button>
               </nav>
             </div>
